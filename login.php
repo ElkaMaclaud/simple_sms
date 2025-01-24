@@ -3,10 +3,10 @@ session_start();
 include 'session.php';
 include 'auth.php';
 
-// if (isLoggedIn()) {
-//     header('Location: index.php');
-//     exit;
-// }
+if (isLoggedIn()) {
+    header('Location: index.php');
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];

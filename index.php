@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include 'session.php';
 $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
 ?>
@@ -10,7 +13,7 @@ $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple CMS</title>
 </head>
-<body>
+<body style="background-color: #333">
     <h1>Posts</h1>
     <?php if (isLoggedIn()): ?>
         <p>Welcome, <?php echo htmlspecialchars($_SESSION['user_id']); ?>! <a href="logout.php">Logout</a></p>
