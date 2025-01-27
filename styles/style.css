@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    max-height:  100vh;
+    height: 100vh;
+    gap: 20px;
+}
+header, footer {
+    margin: 20px 0;
+}
+.nested_container {
+    flex-grow: 1;
+}
