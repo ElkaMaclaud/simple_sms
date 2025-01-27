@@ -22,10 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-    include_once "blocks/header.php"
+    include_once "blocks/header.php";
 ?>
-
-
+    
     <h1>Edit Post</h1>
     <form method="post">
         <input type="text" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" required>
@@ -33,5 +32,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Save</button>
     </form>
     <a href="index.php">Back to Posts</a>
-    <?php
+<?php
     require_once "blocks/footer.php";

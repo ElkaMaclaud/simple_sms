@@ -20,12 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: index.php');
     exit;
 }
+include_once "blocks/header.php";
 ?>
     <h1>Create Post</h1>
     <form method="post">
-        <input type="text" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" required>
-        <textarea name="content" required><?php echo htmlspecialchars($post['content']); ?></textarea>
-        <button type="submit">Save</button>
+        <input type="text" name="title" class="form-control"><br>
+        <textarea name="content" required  class="form-control"></textarea><br>
+        <button type="submit" class="btn btn-success">Save</button>
     </form>
     <a href="index.php">Back to Posts</a>
     <?php
