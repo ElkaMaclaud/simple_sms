@@ -1,4 +1,5 @@
 <?php
+$title = "Login";
 session_start();
 include 'session.php';
 include 'auth.php';
@@ -21,23 +22,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Неверные учетные данные.";
     }
 }
+
+include_once "blocks/header.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    <h1>Login</h1>
+    <h1>Login</h1><br>
     <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-    <form method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
+    <div class="container mt-2">
+        <form method="post">
+            <input type="text" name="username" placeholder="Username" required  class="form-control"><br>
+            <input type="password" name="password" placeholder="Password" required  class="form-control"><br>
+            <button type="submit" class="btn btn-success">Login</button>
+        </form><br>
+    </div>
     <a href="register.php">Don't have an account? Register</a>
-</body>
-</html>
+
+<?php 
+require_once "blocks/footer.php";

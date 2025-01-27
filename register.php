@@ -1,6 +1,7 @@
 <?php
 include 'session.php';
 include 'auth.php';
+$title = "Register";
 
 if (isLoggedIn()) {
     header('Location: index.php');
@@ -18,23 +19,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Пользователь с таким именем уже существует.";
     }
 }
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    <h1>Register</h1>
+include_once "blocks/header.php"
+?>
+    <h1>Register</h1><br>
     <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-    <form method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Register</button>
-    </form>
+    <div class="container mt-2">
+        <form method="post">
+            <input type="text" name="username" placeholder="Username" required  class="form-control"><br>
+            <input type="password" name="password" placeholder="Password" required  class="form-control"><br>
+            <button type="submit" class="btn btn-success">Register</button>
+        </form><br>
+    </div>
     <a href="login.php">Already have an account? Login</a>
-</body>
-</html>
+<?php 
+require_once "blocks/footer.php";

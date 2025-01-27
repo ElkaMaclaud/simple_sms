@@ -3,17 +3,13 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 include 'session.php';
+$title = "Simple CMS";
 $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple CMS</title>
-</head>
-<body style="background-color: #333">
+
+include_once "blocks/header.php";
+?>
+    
     <h1>Posts</h1>
     <?php if (isLoggedIn()): ?>
         <p>Welcome, <?php echo htmlspecialchars($_SESSION['user_id']); ?>! <a href="logout.php">Logout</a></p>
@@ -32,5 +28,5 @@ $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
             </li>
         <?php endforeach; ?>
     </ul>
-</body>
-</html>
+<?php 
+require_once "blocks/footer.php";

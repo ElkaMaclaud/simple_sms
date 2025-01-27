@@ -1,4 +1,5 @@
 <?php
+$title = "Edit Post";
 include 'session.php';
 if (!isLoggedIn()) {
     header('Location: login.php');
@@ -18,16 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header('Location: index.php');
     exit;
 }
+
+    include_once "blocks/header.php"
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Post</title>
-</head>
-<body>
+
     <h1>Edit Post</h1>
     <form method="post">
         <input type="text" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" required>
@@ -35,5 +31,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Save</button>
     </form>
     <a href="index.php">Back to Posts</a>
-</body>
-</html>
+    <?php
+    require_once "blocks/footer.php";
