@@ -1,6 +1,8 @@
 <?php
-$title = "Edit Post";
 include 'session.php';
+session_start();
+$title = "Edit Post";
+
 if (!isLoggedIn()) {
     header('Location: login.php');
     exit;

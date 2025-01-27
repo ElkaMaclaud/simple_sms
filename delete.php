@@ -1,5 +1,7 @@
 <?php
 include 'session.php';
+$title = "Delete";
+session_start();
 if (!isLoggedIn()) {
     header('Location: login.php');
     exit;
