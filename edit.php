@@ -27,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     <h1>Edit Post</h1>
     <form method="post">
-        <input type="text" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" required>
-        <textarea name="content" required><?php echo htmlspecialchars($post['content']); ?></textarea>
-        <button type="submit">Save</button>
-    </form>
+        <input type="text" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" required  class="form-control"><br/>
+        <textarea name="content" required   class="form-control"><?php echo htmlspecialchars($post['content']); ?></textarea><br/>
+        <button type="submit"  class="btn btn-success">Save</button>
+    </form><br/>
     <a href="index.php">Back to Posts</a>
 <?php
     require_once "blocks/footer.php";

@@ -27,7 +27,7 @@ include_once "blocks/header.php";
         <input type="text" name="title" class="form-control"><br>
         <textarea name="content" required  class="form-control"></textarea><br>
         <button type="submit" class="btn btn-success">Save</button>
-    </form>
+    </form><br/>
     <a href="index.php">Back to Posts</a>
     <?php
     require_once "blocks/footer.php";
