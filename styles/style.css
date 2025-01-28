@@ -22,28 +22,28 @@ header, footer {
     text-align: center;
     height: calc(100vh/3);
     object-fit: fill;
-    animation: changeTransparency 2s infinite;
+    animation: fadeOutFromCenter 2s infinite;
     margin-bottom: 20px;
 }
-@keyframes changeTransparency {
+@keyframes fadeOutFromCenter {
     0% {
+        clip-path: circle(0% at 50% 50%);
         opacity: 1;
-        transform: scale(1);
     }
     25% {
-        opacity: .9;
-        transform: scale(1.05);
+        clip-path: circle(50% at 50% 50%); 
+        opacity: .7; 
     }
     50% {
-        opacity: .8;
-        transform: scale(1.1);
+        clip-path: circle(100% at 50% 50%);
+        opacity: .5;
     }
     75% {
+        clip-path: circle(100% at 50% 50%);
         opacity: .7;
-        transform: scale(1.15);
     }
     100% {
-        opacity: .6;
-        transform: scale(1);
+        clip-path: circle(0% at 50% 50%);
+        opacity: 1; 
     }
 }
