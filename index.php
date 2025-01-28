@@ -13,21 +13,21 @@ include_once "blocks/header.php";
     <h1>Posts</h1>
     <?php if (isLoggedIn()): ?>
         <div class="welcome-message">
-        <p>Welcome, <?php echo htmlspecialchars($_SESSION['user_id']); ?>!</p> <a href="logout.php">Logout</a></div>
+        <h3>Welcome, <?php echo htmlspecialchars($_SESSION['user_id']); ?>!</h3> <a href="logout.php">Logout</a></div>
         <a href="create.php">Create New Post</a>
     <?php else: ?>
         <a href="login.php">Login</a> | <a href="register.php">Register</a>
     <?php endif; ?>
-    <ul>
+    <div>
         <?php foreach ($posts as $index => $post): ?>
-            <li>
-                <a href="view.php?index=<?php echo $index; ?>"><?php echo htmlspecialchars($post['title']); ?></a>
+            <div class="wrapperLinkContainer">
+                <button class="wrapperLink"><a href="view.php?index=<?php echo $index; ?>"><?php echo htmlspecialchars($post['title']); ?></a></button>
                 <?php if (isLoggedIn()): ?>
-                    - <a href="edit.php?index=<?php echo $index; ?>">Edit</a>
-                    - <a href="delete.php?index=<?php echo $index; ?>">Delete</a>
+                    - <button class="wrapperLink"><a href="edit.php?index=<?php echo $index; ?>">Edit</a></button>
+                    - <button class="wrapperLink"><a href="delete.php?index=<?php echo $index; ?>">Delete</a></button>
                 <?php endif; ?>
-            </li>
+            </div>
         <?php endforeach; ?>
-    </ul>
+    </div>
 <?php 
 require_once "blocks/footer.php";
