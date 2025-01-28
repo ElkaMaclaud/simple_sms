@@ -12,6 +12,10 @@ header, footer {
 .nested_container {
     flex-grow: 1;
 }
+.welcome-message {
+    display: flex;
+    justify-content: space-between;
+}
 .animateImg {
     width: 100%;
     border-radius: 20px;
@@ -24,17 +28,22 @@ header, footer {
 @keyframes changeTransparency {
     0% {
         opacity: 1;
+        transform: scale(1);
     }
     25% {
         opacity: .9;
+        transform: scale(1.05);
     }
     50% {
         opacity: .8;
+        transform: scale(1.1);
     }
     75% {
-        opacity: .5;
+        opacity: .7;
+        transform: scale(1.15);
     }
     100% {
-        opacity: .25;
+        opacity: .6;
+        transform: scale(1);
     }
 }

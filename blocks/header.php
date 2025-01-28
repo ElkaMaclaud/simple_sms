@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <header>
-            CMS на PHP
+            <h1>CMS на PHP</h1>
         </header>
         <section class="nested_container">
             <img put type="image"

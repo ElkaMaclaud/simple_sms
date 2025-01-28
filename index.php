@@ -12,7 +12,8 @@ include_once "blocks/header.php";
     
     <h1>Posts</h1>
     <?php if (isLoggedIn()): ?>
-        <p>Welcome, <?php echo htmlspecialchars($_SESSION['user_id']); ?>! <a href="logout.php">Logout</a></p>
+        <div class="welcome-message">
+        <p>Welcome, <?php echo htmlspecialchars($_SESSION['user_id']); ?>!</p> <a href="logout.php">Logout</a></div>
         <a href="create.php">Create New Post</a>
     <?php else: ?>
         <a href="login.php">Login</a> | <a href="register.php">Register</a>
