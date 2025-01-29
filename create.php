@@ -8,18 +8,36 @@ if (!isLoggedIn()) {
     exit;
 }
 include 'auth.php'; 
+phpinfo();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
-    $newPost = [
-        'title' => $_POST['title'],
-        'content' => $_POST['content']
-    ];
-    $posts[] = $newPost;
-    file_put_contents('data/posts.json', json_encode($posts));
-    header('Location: index.php');
-    exit;
+    // $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
+    // $newPost = [
+    //     'title' => $_POST['title'],
+    //     'content' => $_POST['content']
+    // ];
+    // $posts[] = $newPost;
+    // file_put_contents('data/posts.json', json_encode($posts));
+    // Подготовка данных для вставки
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+
+    // Подготовка SQL-запроса
+    $stmt = $pdo->prepare("INSERT INTO users (name, email) VALUES (:title, :content)");
+    
+    // Привязка параметров
+    $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':content', $content);
+
+    // Выполнение запроса
+    if ($stmt->execute()) {
+        header('Location: index.php');
+        exit;
+    } else {
+        echo 'Ошибка при вставке данных.';
+    }
 }
+?>
 include_once "blocks/header.php";
 ?>
     <h1>Create Post</h1>
