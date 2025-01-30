@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "psr-4": {
+            "YourNamespace\\": "src/",
+            "Dotenv\\": "vendor/vlucas/phpdotenv/src/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
