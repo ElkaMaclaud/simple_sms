@@ -1,6 +1,43 @@
 <?php
 
-function registerUser($username, $password) {
+function registerUser($db, $username, $password) {
+    $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
+    $stmt->execute([':username' => $username]);
+    $userExists = $stmt->fetchColumn();
+
+    if ($userExists) {
+        return false; 
+    }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $stmt = $db->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
+    $stmt->execute([
+        ':username' => $username,
+        ':password' => $hashedPassword
+    ]);
+
+    return true;
+}
+function authenticateUser($db, $username, $password) {
+
+    $stmt = $db->prepare("SELECT * FROM users WHERE username = $1");
+    $stmt->execute([$username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password'])) {
+        return $user; 
+    }
+
+    return false; 
+}
+
+?>
+
+
+
+
+<!-- function registerUser($username, $password) {
     $users = json_decode(file_get_contents('data/users.json'), true) ?: [];
     
     // Проверка на существование пользователя
@@ -29,6 +66,4 @@ function authenticateUser($username, $password) {
         }
     }
     return false; // Неверные учетные данные
-}
-
-?>
+} -->

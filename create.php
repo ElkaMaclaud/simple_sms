@@ -8,7 +8,6 @@ if (!isLoggedIn()) {
     exit;
 }
 include 'auth.php'; 
-phpinfo();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];

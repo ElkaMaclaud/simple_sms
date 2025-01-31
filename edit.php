@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $posts[$index] = $post;
     file_put_contents('data/posts.json', json_encode($posts));
     header('Location: index.php');
-    exit;
+    exit; 
 }
 
     include_once "blocks/header.php";
-?>
+?>  
     
     <h1>Edit Post</h1>
     <form method="post">
