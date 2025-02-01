@@ -1,8 +1,8 @@
 <?php
 
-function registerUser($db, $username, $password) {
-    $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE username = :username");
-    $stmt->execute([':username' => $username]);
+function registerUser($db, $name, $password) {
+    $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE name = :name");
+    $stmt->execute([':name' => $name]);
     $userExists = $stmt->fetchColumn();
 
     if ($userExists) {
@@ -11,22 +11,25 @@ function registerUser($db, $username, $password) {
 
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $db->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
+    $stmt = $db->prepare("INSERT INTO users (name, password) VALUES (:name, :password)");
     $stmt->execute([
-        ':username' => $username,
+        ':name' => $name,
         ':password' => $hashedPassword
     ]);
 
     return true;
 }
-function authenticateUser($db, $username, $password) {
+function authenticateUser($db, $name, $password) {
 
-    $stmt = $db->prepare("SELECT * FROM users WHERE username = $1");
-    $stmt->execute([$username]);
+    $stmt = $db->prepare("SELECT * FROM users WHERE name = :name");
+    $stmt->execute([$name]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user && password_verify($password, $user['password'])) {
-        return $user; 
+    // if ($user && password_verify($password, $user['password'])) {
+    //     return $user; 
+    // }
+    if ($user && $password === $user['password']) {
+        return $user;
     }
 
     return false; 
@@ -37,12 +40,12 @@ function authenticateUser($db, $username, $password) {
 
 
 
-<!-- function registerUser($username, $password) {
+<!-- function registerUser($name, $password) {
     $users = json_decode(file_get_contents('data/users.json'), true) ?: [];
     
     // Проверка на существование пользователя
     foreach ($users as $user) {
-        if ($user['username'] === $username) {
+        if ($user['name'] === $name) {
             return false; // Пользователь уже существует
         }
     }
@@ -50,18 +53,18 @@ function authenticateUser($db, $username, $password) {
     // Хеширование пароля
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
     $users[] = [
-        'username' => $username,
+        'name' => $name,
         'password' => $hashedPassword
     ];
     file_put_contents('data/users.json', json_encode($users));
     return true;
 }
 
-function authenticateUser($username, $password) {
+function authenticateUser($name, $password) {
     $users = json_decode(file_get_contents('data/users.json'), true) ?: [];
     
     foreach ($users as $user) {
-        if ($user['username'] === $username && password_verify($password, $user['password'])) {
+        if ($user['name'] === $name && password_verify($password, $user['password'])) {
             return $user; // Успешная аутентификация
         }
     }

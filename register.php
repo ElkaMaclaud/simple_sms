@@ -9,10 +9,10 @@ if (isLoggedIn()) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
+    $name = $_POST['name'];
     $password = $_POST['password'];
 
-    if (registerUser($username, $password)) {
+    if (registerUser($name, $password)) {
         header('Location: login.php');
         exit;
     } else {
@@ -26,7 +26,7 @@ include_once "blocks/header.php"
     <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
     <div class="container mt-2">
         <form method="post">
-            <input type="text" name="username" placeholder="Username" required  class="form-control"><br>
+            <input type="text" name="name" placeholder="name" required  class="form-control"><br>
             <input type="password" name="password" placeholder="Password" required  class="form-control"><br>
             <button type="submit" class="btn btn-success">Register</button>
         </form><br>

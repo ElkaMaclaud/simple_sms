@@ -23,11 +23,11 @@ try {
 
 //     public function __construct() {
 //         $dsn = 'pgsql:host=localhost;port=5432;dbname=my_database';
-//         $username = 'my_user';
+//         $name = 'my_user';
 //         $password = 'my_password';
 
 //         try {
-//             $this->pdo = new PDO($dsn, $username, $password);
+//             $this->pdo = new PDO($dsn, $name, $password);
 //             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 //         } catch (PDOException $e) {
 //             die("Ошибка подключения: " . $e->getMessage());
