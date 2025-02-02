@@ -5,8 +5,6 @@ include 'session.php';
 include 'auth.php';
 include 'db.php';
 
-var_dump($pdo);
-
 if (isLoggedIn()) {
     header('Location: index.php');
     exit;

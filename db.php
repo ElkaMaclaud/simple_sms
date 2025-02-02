@@ -12,7 +12,7 @@ $dsn = 'pgsql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'] . ';user
 try {
     $pdo = new PDO($dsn);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo 'Подключение прошло успешло!';
+    // echo 'Подключение прошло успешло!';
 } catch (PDOException $e) {
     echo 'Ошибка подключения: ' . $e->getMessage();
     exit;
