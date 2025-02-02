@@ -5,10 +5,8 @@
             "Dotenv\\": "vendor/vlucas/phpdotenv/src/"
         }
     },
-    "config": {
-        "platform": {
-            "php": "<=7.0.33"
-        }
+   "config": {
+        "platform-check": false
     },
     "require": {
         "vlucas/phpdotenv": "^5.6"
