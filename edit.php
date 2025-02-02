@@ -1,5 +1,6 @@
 <?php
 include 'session.php';
+include "db.php";
 session_start();
 $title = "Edit Post";
 
@@ -8,18 +9,44 @@ if (!isLoggedIn()) {
     exit;
 }
 include 'auth.php'; 
+$postId = (int)$_GET['id'];
 
-$posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
-$index = $_GET['index'] ?? null;
-$post = $posts[$index] ?? null;
+// $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
+// $index = $_GET['index'] ?? null;
+// $post = $posts[$index] ?? null;
+try {
+    $stmt = $pdo->prepare("SELECT * FROM posts WHERE id = :id");
+    $stmt->execute(['id' => $postId]);
+    $post = $stmt->fetch(PDO::FETCH_ASSOC); 
+
+    if (!$post) {
+        die("Пост не найден.");
+    }
+} catch(PDOException $e) {
+    die("Ошибка при получении постов: " . $e->getMessage());
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $post['title'] = $_POST['title'];
-    $post['content'] = $_POST['content'];
-    $posts[$index] = $post;
-    // file_put_contents('data/posts.json', json_encode($posts));
-    header('Location: index.php');
-    exit; 
+    // $post['title'] = $_POST['title'];
+    // $post['content'] = $_POST['content'];
+    // $posts[$index] = $post;
+    // // file_put_contents('data/posts.json', json_encode($posts));
+    // header('Location: index.php');
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+
+    $stmt = $pdo->prepare("update posts set title=:title, content=:content where id=:postId");
+    
+    $stmt->bindParam(':title', $title);
+    $stmt->bindParam(':content', $content);
+    $stmt->bindParam(':postId', $postId, PDO::PARAM_INT);
+
+    if ($stmt->execute()) {
+        header('Location: index.php');
+        exit;
+    } else {
+        echo 'Ошибка при вставке данных.';
+    }
 }
 
     include_once "blocks/header.php";

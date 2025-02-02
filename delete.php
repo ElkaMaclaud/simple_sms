@@ -1,5 +1,6 @@
 <?php
 include 'session.php';
+include 'db.php';
 $title = "Delete";
 session_start();
 if (!isLoggedIn()) {
@@ -7,13 +8,24 @@ if (!isLoggedIn()) {
     exit;
 }
 include 'auth.php'; 
-$posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
-$index = $_GET['index'] ?? null;
+$postId = (int)$_GET['id'];
+try {
+    $stmt = $pdo->prepare("delete from posts WHERE id = :postId");
+    $stmt->execute(['postId' => $postId]);
 
-if ($index !== null && isset($posts[$index])) {
-    unset($posts[$index]);
-    file_put_contents('data/posts.json', json_encode(array_values($posts)));
+    if ($stmt->rowCount() === 0) {
+        die("Пост не найден или уже удалён.");
+    } else {
+        echo "Пост успешно удалён.";
+    }
+} catch(PDOException $e) {
+    die("Ошибка при удалении поста: " . $e->getMessage());
 }
+
+// if ($index !== null && isset($posts[$index])) {
+//     unset($posts[$index]);
+//     file_put_contents('data/posts.json', json_encode(array_values($posts)));
+// }
 header('Location: index.php');
 exit;
 ?>
