@@ -21,4 +21,4 @@
 1. **Скачайте CMS**: Клонируйте или загрузите репозиторий на свой локальный компьютер.
 
    ```bash
-   git clone https://github.com/yourusername/simple-php-cms.git
+   git clone https://github.com/ElkaMaclaud/simple_sms

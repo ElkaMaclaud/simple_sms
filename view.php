@@ -1,13 +1,29 @@
 <?php
 include 'session.php';
+include 'db.php';
 if (!isLoggedIn()) {
     header('Location: login.php');
     exit;
 }
 include 'auth.php'; 
-$posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
-$index = $_GET['index'] ?? null;
-$post = $posts[$index] ?? null;
+// $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    die("Неверный идентификатор поста.");
+}
+
+$postId = (int)$_GET['id'];
+
+try {
+    $stmt = $pdo->prepare("SELECT * FROM posts WHERE id = :id");
+    $stmt->execute(['id' => $postId]);
+    $post = $stmt->fetch(PDO::FETCH_ASSOC); 
+
+    if (!$post) {
+        die("Пост не найден.");
+    }
+} catch(PDOException $e) {
+    die("Ошибка при получении постов: " . $e->getMessage());
+}
 
 include_once "blocks/header.php";
 ?>

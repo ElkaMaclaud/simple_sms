@@ -1,5 +1,6 @@
 <?php
 include 'session.php';
+include 'db.php';
 $title = "Create";
 session_start();
 
@@ -21,8 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $content = $_POST['content'];
 
-    // Подготовка SQL-запроса
-    $stmt = $pdo->prepare("INSERT INTO users (name, email) VALUES (:title, :content)");
+    $stmt = $pdo->prepare("INSERT INTO posts (title, content) VALUES (:title, :content)");
     
     // Привязка параметров
     $stmt->bindParam(':title', $title);
@@ -36,9 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo 'Ошибка при вставке данных.';
     }
 }
-?>
+
 include_once "blocks/header.php";
 ?>
+
+
     <h1>Create Post</h1>
     <form method="post">
         <input type="text" name="title" class="form-control"><br>

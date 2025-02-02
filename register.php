@@ -1,6 +1,7 @@
 <?php
 include 'session.php';
 include 'auth.php';
+include 'db.php';
 $title = "Register";
 
 if (isLoggedIn()) {
@@ -12,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $password = $_POST['password'];
 
-    if (registerUser($name, $password)) {
+    if (registerUser($pdo, $name, $password)) {
         header('Location: login.php');
         exit;
     } else {

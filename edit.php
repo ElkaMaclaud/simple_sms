@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $post['title'] = $_POST['title'];
     $post['content'] = $_POST['content'];
     $posts[$index] = $post;
-    file_put_contents('data/posts.json', json_encode($posts));
+    // file_put_contents('data/posts.json', json_encode($posts));
     header('Location: index.php');
     exit; 
 }

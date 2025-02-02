@@ -21,17 +21,14 @@ function registerUser($db, $name, $password) {
 }
 function authenticateUser($db, $name, $password) {
 
-    $stmt = $db->prepare("SELECT * FROM users WHERE name = :name");
+    $stmt = $db->prepare("SELECT * FROM users WHERE name = ?");
     $stmt->execute([$name]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // if ($user && password_verify($password, $user['password'])) {
-    //     return $user; 
-    // }
-    if ($user && $password === $user['password']) {
-        return $user;
+    if ($user && password_verify($password, $user['password'])) {
+        return $user; 
     }
-
+ 
     return false; 
 }
 
