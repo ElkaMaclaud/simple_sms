@@ -1,7 +1,6 @@
 <?php
 include 'session.php';
 include "db.php";
-session_start();
 $title = "Edit Post";
 
 if (!isLoggedIn()) {

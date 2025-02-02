@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="<?php echo $_SERVER['DOCUMENT_ROOT']; ?>/styles/styles.css"> -->
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>

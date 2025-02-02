@@ -2,7 +2,6 @@
 include 'session.php';
 include 'db.php';
 $title = "Delete";
-session_start();
 if (!isLoggedIn()) {
     header('Location: login.php');
     exit;

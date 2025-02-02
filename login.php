@@ -1,6 +1,5 @@
 <?php
 $title = "Login";
-session_start();
 include 'session.php';
 include 'auth.php';
 include 'db.php';

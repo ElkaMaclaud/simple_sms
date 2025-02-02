@@ -2,7 +2,6 @@
 include 'session.php';
 include 'db.php';
 $title = "Create";
-session_start();
 
 if (!isLoggedIn()) {
     header('Location: login.php');
