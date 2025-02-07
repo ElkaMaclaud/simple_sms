@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 include 'session.php';
 include 'db.php';
 $title = "Simple CMS";
-// $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
+
 try {
     $stmt = $pdo->query("select title, id from posts order by created_at desc");
     $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);

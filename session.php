@@ -2,7 +2,7 @@
 session_start();
 
 function isLoggedIn() {
-    // var_dump($_SESSION);
+
     return isset($_SESSION['user_id']);
 }
 

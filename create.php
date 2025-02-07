@@ -10,24 +10,14 @@ if (!isLoggedIn()) {
 include 'auth.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
-    // $newPost = [
-    //     'title' => $_POST['title'],
-    //     'content' => $_POST['content']
-    // ];
-    // $posts[] = $newPost;
-    // file_put_contents('data/posts.json', json_encode($posts));
-    // Подготовка данных для вставки
     $title = $_POST['title'];
     $content = $_POST['content'];
 
     $stmt = $pdo->prepare("INSERT INTO posts (title, content) VALUES (:title, :content)");
     
-    // Привязка параметров
     $stmt->bindParam(':title', $title);
     $stmt->bindParam(':content', $content);
 
-    // Выполнение запроса
     if ($stmt->execute()) {
         header('Location: index.php');
         exit;

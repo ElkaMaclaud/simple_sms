@@ -6,7 +6,7 @@ if (!isLoggedIn()) {
     exit;
 }
 include 'auth.php'; 
-// $posts = json_decode(file_get_contents('data/posts.json'), true) ?: [];
+
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     die("Неверный идентификатор поста.");
 }
@@ -29,7 +29,7 @@ include_once "blocks/header.php";
 ?>
 
     <h1><?php echo htmlspecialchars($post['title']); ?></h1>
-    <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
+    <p class="text"><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
     <a href="index.php">Back to Posts</a>
 
 <?php

@@ -25,6 +25,10 @@ header, footer {
     flex-grow: 1;
     padding: 0 20%;
 }
+.text {
+    text-indent: 20px;
+    text-align: center;
+}
 .welcome-message {
     display: flex;
     justify-content: space-between;
@@ -36,13 +40,13 @@ header, footer {
 .wrapperLink {
     border: none;
     border-radius: 10px;
-    background-color: rgba(156, 193, 235, .3);
+    background-color: rgba(156, 193, 235, .1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     padding: 7px 30px;
     transition: .3s ease-in-out;
 }
 .wrapperLink:hover {
-    background-color: rgba(156, 193, 235, .9);
+    background-color: rgba(156, 193, 235, .4);
 }
 .animateImg {
     width: 100%;

@@ -21,10 +21,5 @@ try {
     die("Ошибка при удалении поста: " . $e->getMessage());
 }
 
-// if ($index !== null && isset($posts[$index])) {
-//     unset($posts[$index]);
-//     file_put_contents('data/posts.json', json_encode(array_values($posts)));
-// }
 header('Location: index.php');
 exit;
-?>
